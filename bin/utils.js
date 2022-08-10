@@ -147,7 +147,7 @@ class WSSharedDoc extends Y.Doc {
  */
 const getYDoc = (docname, gc = true) => map.setIfUndefined(docs, docname, () => {
   const doc = new WSSharedDoc(docname)
-  doc.gc = false
+  doc.gc = gc
   if (persistence !== null) {
     persistence.bindState(docname, doc)
   }
@@ -167,15 +167,6 @@ exports.getYDoc = getYDoc
   decoding.readVarUint(decoder)
   decoding.readVarString(decoder)
   return decoding.hasContent(decoder)
-}
-
-/**
- * check current id whether is main doc or sub doc
- * @param {String} id 
- * @returns 
- */
-const isSubdoc = (id) => {
-  return id.startsWith('sub')
 }
 
 /**
